@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Keybinds")]
-    [SerializeField] private KeyCode thrust;
-    [SerializeField] private KeyCode turnLeft;
-    [SerializeField] private KeyCode turnRight;
+    public KeyCode thrust;
+    public KeyCode turnLeft;
+    public KeyCode turnRight;
 
     [Header("Components")]
     [SerializeField] Rigidbody2D playerRb;
