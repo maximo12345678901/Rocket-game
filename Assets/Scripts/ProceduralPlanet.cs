@@ -22,6 +22,7 @@ public class ProceduralPlanet : MonoBehaviour
     void Update()
     {
         DisplaceVertices();
+        FixZFighting();
     }
 
     void DisplaceVertices()
