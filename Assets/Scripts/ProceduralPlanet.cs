@@ -21,23 +21,22 @@ public class ProceduralPlanet : MonoBehaviour
 
     void Update()
     {
-        DisplaceVertices();
         FixZFighting();
     }
 
     void DisplaceVertices()
     {
-        
         for (int i = 0; i < vertices.Length; i++)
         {
-            Vector3 currentVertex = vertices[i];
+            Vector3 currentVertex = vertices[i]; // Vector3 of the current vertex in the loop
             float angle = Mathf.Atan2(currentVertex.y, currentVertex.x); // Get the angle in radians (-π to π), a point around the unit circle
             float point = (angle * Mathf.PI) / (2 * Mathf.PI); // Normalize to a value between 0 and 1
 
             float elevation = Mathf.PerlinNoise(point * detail + randomOffset, 0f) * maxHeight;
 
-            vertices[i] = vertices[i].normalized + currentVertex.normalized * elevation + currentVertex.normalized * height;
+            vertices[i] = currentVertex.normalized * (1f + elevation + height);
         }
+        
         meshFilter.mesh.vertices = vertices;
         meshFilter.mesh.RecalculateNormals();
         meshFilter.mesh.RecalculateBounds();
@@ -47,6 +46,6 @@ public class ProceduralPlanet : MonoBehaviour
     {
         Vector3 direction = transform.position - mainCam.transform.position;
         direction.Normalize();
-        meshFilter.gameObject.transform.position = transform.position + direction * 0.001f;
+        meshFilter.gameObject.transform.position = transform.position + direction.normalized;
     }
 }
