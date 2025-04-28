@@ -810,11 +810,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 5187064165041554263, guid: 37b6f5aeb170f6d45a127064511fbeb1, type: 3}
-  maxDistance: 150
+  maxDistance: 500
   maxPlanetTurningSpeed: 5
   numberOfPlanets: 7
   minPlanetSize: 10
-  maxPlanetSize: 31
+  maxPlanetSize: 20
   player: {fileID: 528220583}
 --- !u!1 &1643773133
 GameObject:

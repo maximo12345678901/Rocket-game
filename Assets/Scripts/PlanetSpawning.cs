@@ -44,7 +44,7 @@ public class PlanetSpawning : MonoBehaviour
             positionAroundCircle *= maxDistance;
             Vector2 randomPosition = positionAroundCircle * Random.Range(0.1f, 1f);
 
-            GameObject spawnedPlanet = Instantiate(planetPrefab, randomPosition, Quaternion.identity);
+            GameObject spawnedPlanet = Instantiate(planetPrefab, randomPosition, Quaternion.Euler(180f, 0f, 0f), transform);
 
             spawnedPlanet.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-maxPlanetTurningSpeed, maxPlanetTurningSpeed);
 
