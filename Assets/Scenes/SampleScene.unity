@@ -810,12 +810,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 5187064165041554263, guid: 37b6f5aeb170f6d45a127064511fbeb1, type: 3}
-  maxDistance: 500
-  maxPlanetTurningSpeed: 5
-  numberOfPlanets: 7
+  maxDistance: 850
+  numberOfPlanets: 20
+  player: {fileID: 528220583}
   minPlanetSize: 10
   maxPlanetSize: 20
-  player: {fileID: 528220583}
+  maxPlanetTurningSpeed: 5
+  colorPresets:
+  - {r: 0.20188668, g: 0.7169812, b: 0, a: 1}
+  - {r: 0.15659364, g: 0.080767184, b: 0.5188679, a: 1}
+  - {r: 0.8867924, g: 0.76700187, b: 0.4266643, a: 1}
+  - {r: 0.8066038, g: 0.6514877, b: 0.20165095, a: 1}
+  - {r: 0.5424528, g: 0.1645141, b: 0.13305445, a: 1}
 --- !u!1 &1643773133
 GameObject:
   m_ObjectHideFlags: 0

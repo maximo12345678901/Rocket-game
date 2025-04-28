@@ -1,15 +1,20 @@
 using UnityEngine;
 public class PlanetSpawning : MonoBehaviour
 {
+    [Header("Planet spawning settings")]
     [SerializeField] GameObject planetPrefab;
     [SerializeField] float maxDistance;
-    [SerializeField] float maxPlanetTurningSpeed;
     [SerializeField] int numberOfPlanets;
+    [SerializeField] Transform player;
 
+    [Header("Planet settings")]
     [SerializeField] int minPlanetSize = 10;
     [SerializeField] int maxPlanetSize = 31;
+    [SerializeField] float maxPlanetTurningSpeed;
+    [SerializeField] Color[] colorPresets;
+
     GameObject[] planets;
-    [SerializeField] Transform player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +25,7 @@ public class PlanetSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (planets == null) {return;}
         LoopPlanets();
     }
 
@@ -39,6 +45,7 @@ public class PlanetSpawning : MonoBehaviour
     {
         for (int i = 0; i < numberOfPlanets; i++)
         {
+            // Spawning
             float randomAngle = Random.Range(0f, 360f);
             Vector2 positionAroundCircle = new (Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
             positionAroundCircle *= maxDistance;
@@ -46,14 +53,22 @@ public class PlanetSpawning : MonoBehaviour
 
             GameObject spawnedPlanet = Instantiate(planetPrefab, randomPosition, Quaternion.Euler(180f, 0f, 0f), transform);
 
+            // Spinning
             spawnedPlanet.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-maxPlanetTurningSpeed, maxPlanetTurningSpeed);
 
+            // Size
             int planetSize = Random.Range(minPlanetSize, maxPlanetSize); 
             spawnedPlanet.transform.localScale = new (
                 planetSize,
                 planetSize,
                 1
             );
+            
+            // Color
+            Color foregroundColor = colorPresets[Random.Range(0, colorPresets.Length)];
+            Color backgroundColor = Color.Lerp(foregroundColor, Color.black, 0.4f);
+            spawnedPlanet.GetComponent<MeshRenderer>().material.color = foregroundColor;
+            spawnedPlanet.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = backgroundColor;
         }
     }
 }
