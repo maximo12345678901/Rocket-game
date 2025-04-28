@@ -30,7 +30,7 @@ public class PlanetSpawning : MonoBehaviour
             Vector2 distance = planet.transform.position - player.position;
             if (distance.magnitude > maxDistance)
             {
-                planet.transform.position = (Vector2) player.position - distance;
+                planet.transform.position = (Vector2)player.position - distance.normalized * maxDistance;
             }
         }
     }
